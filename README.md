@@ -5,7 +5,7 @@ This project **builds real-world rate limiting algorithms on the backend** and *
 
 ### 🎥 Demo
 
-**Drive Link:** [https://drive.google.com/file/d/1W0jT39CUNEDIaEak-3oMeD8qRct7BvPE/view?usp=sharing](https://drive.google.com/file/d/1W0jT39CUNEDIaEak-3oMeD8qRct7BvPE/view?usp=sharing)
+**Drive Link:** [[https://drive.google.com/file/d/1W0jT39CUNEDIaEak-3oMeD8qRct7BvPE/view?usp=sharing](https://drive.google.com/file/d/1W0jT39CUNEDIaEak-3oMeD8qRct7BvPE/view?usp=sharing)]
 
 ---
 
@@ -44,7 +44,11 @@ Almost every high-scale system applies rate limiting at multiple layers.
 Tracks requests within fixed time windows and resets the count whenever a new window starts.
 
 🖼 **Visualization**
-![FixedWindow](./assets/FixedWindow.png)
+
+
+https://github.com/user-attachments/assets/2b940924-3b21-435b-a9a3-b8b718ea4e8b
+
+
 
 ---
 
@@ -53,7 +57,10 @@ Tracks requests within fixed time windows and resets the count whenever a new wi
 Stores individual request timestamps and considers only those that fall inside the rolling window.
 
 🖼 **Visualization**
-![SlidingWindowLog](./assets/SlidingWindowLog.png)
+
+
+https://github.com/user-attachments/assets/0e96b12f-d652-45ba-b0d4-31979a8a9aa7
+
 
 ---
 
@@ -62,7 +69,11 @@ Stores individual request timestamps and considers only those that fall inside t
 Requests are permitted as long as tokens are available, with tokens refilled at a constant rate.
 
 🖼 **Visualization**
-![TokenBucket](./assets/TokenBucket.png)
+
+
+https://github.com/user-attachments/assets/647fc838-112d-4fe2-a880-8401107244b8
+
+
 
 ---
 
@@ -71,62 +82,27 @@ Requests are permitted as long as tokens are available, with tokens refilled at 
 Processes requests at a steady rate and drops excess traffic once the bucket capacity is exceeded.
 
 🖼 **Visualization**
-![LeakyBucket](./assets/LeakyBucket.png)
+
+
+https://github.com/user-attachments/assets/c6d7a9af-f2f2-4c89-9dd8-55e5dbb15011
+
 
 ---
 
-## 🏛 High-Level Architecture
-
-```
-Frontend (React + TypeScript)
-        |
-        | REST API
-        ▼
-Backend (Spring Boot)
-        |
-        ▼
-Rate Limiting Core
-```
-
----
 
 ## 📁 Project Structure
 
 ```text
 com.saima.rate_limiter
-├── config
-│   └── WebConfig
-│
-├── controller
-│   └── RateLimiterController
-│
-├── model
-│   ├── LeakyBucket
-│   ├── RateLimitAlgorithm
-│   ├── RateLimitConfig
-│   ├── RateLimitMetrics
-│   ├── RateLimitResult
-│   └── TokenBucket
-│
+├── config  // Web config
+├── controller  // REST endpoints
+├── model  // Configuration, state models & ENUM
 ├── service
-│   ├── algorithms
-│   │   ├── FixedWindowLimiter
-│   │   ├── LeakyBucketLimiter
-│   │   ├── SlidingWindowLogLimiter
-│   │   └── TokenBucketLimiter
-│   │
-│   ├── factory
-│   │   └── RateLimiterManager
-│   │
-│   └── RateLimiter
-│
-├── store
-│   ├── InMemoryStore
-│   ├── LeakyBucketStore
-│   ├── SlidingWindowStore
-│   └── TokenBucketStore
-│
-└── RateLimiterApplication
+│   ├── algorithms  // Rate limiting algorithms
+│   ├── factory  // Algorithm selection (Factory pattern)
+│   └── RateLimiter  // Service interface
+├── store  // In-memory state management
+└── RateLimiterApplication.java
 ```
 
 **Design highlights:**
@@ -148,7 +124,7 @@ com.saima.rate_limiter
 
 ### Backend
 
-* Java 25
+* Java 21
 * Spring Boot
 * RESTful APIs
 * Strategy & Factory design patterns
@@ -184,7 +160,7 @@ http://localhost:8080
 ### Start Frontend
 
 ```bash
-cd rate-limiter-frontend/app
+cd rate-limiter-frontend
 npm install
 npm run dev
 ```
@@ -197,6 +173,15 @@ http://localhost:3000
 
 ---
 
+## 🔮 Future Enhancements
+
+*  Distributed rate limiting using Redis or similar stores
+*  Dynamic limits based on traffic patterns or user tiers
+*  Role- or auth-based rate limiting (API keys / JWT)
+*  Integration with API gateways and cloud setups
+
+---
+
 ## 🤝 Contributions
 
 Contributions are welcome and appreciated!
@@ -206,3 +191,9 @@ Contributions are welcome and appreciated!
 3. Commit your changes (`git commit -m "Implement feature"`)
 4. Push to your branch (`git push origin feature-name`)
 5. Open a Pull Request
+
+
+
+
+
+
