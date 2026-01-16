@@ -1,0 +1,208 @@
+# 🛑 Rate Limiter Visualizer
+
+Rate limiting is a **fundamental backend system design principle** used to regulate how often a client can call an API or service.
+This project **builds real-world rate limiting algorithms on the backend** and **visualizes their behavior live on the frontend**, making the concepts intuitive and easy to grasp.
+
+### 🎥 Demo
+
+**Drive Link:** [https://drive.google.com/file/d/1W0jT39CUNEDIaEak-3oMeD8qRct7BvPE/view?usp=sharing](https://drive.google.com/file/d/1W0jT39CUNEDIaEak-3oMeD8qRct7BvPE/view?usp=sharing)
+
+---
+
+## 🧩 What Is Rate Limiting?
+
+**Rate limiting** defines an upper bound on the number of requests a client can send within a given time interval.
+
+**Example:**
+Permit at most **5 requests every 10 seconds per user**.
+
+---
+
+## ⚠️ Why Rate Limiting Matters
+
+Rate limiting is crucial for modern backend systems to:
+
+* Prevent excessive load on servers
+* Defend APIs against abuse and DDoS attacks
+* Guarantee fair access for all consumers
+* Maintain consistent and predictable performance
+* Optimize infrastructure and operational costs
+
+Almost every high-scale system applies rate limiting at multiple layers.
+
+---
+
+## 🧪 Implemented Rate Limiting Algorithms
+
+> Each algorithm below is **fully implemented in the backend**.
+> The frontend reflects **actual allow / deny decisions** based on real-time request data.
+
+---
+
+### 1️⃣ Fixed Window Counter
+
+Tracks requests within fixed time windows and resets the count whenever a new window starts.
+
+🖼 **Visualization**
+![FixedWindow](./assets/FixedWindow.png)
+
+---
+
+### 2️⃣ Sliding Window Log
+
+Stores individual request timestamps and considers only those that fall inside the rolling window.
+
+🖼 **Visualization**
+![SlidingWindowLog](./assets/SlidingWindowLog.png)
+
+---
+
+### 4️⃣ Token Bucket
+
+Requests are permitted as long as tokens are available, with tokens refilled at a constant rate.
+
+🖼 **Visualization**
+![TokenBucket](./assets/TokenBucket.png)
+
+---
+
+### 5️⃣ Leaky Bucket
+
+Processes requests at a steady rate and drops excess traffic once the bucket capacity is exceeded.
+
+🖼 **Visualization**
+![LeakyBucket](./assets/LeakyBucket.png)
+
+---
+
+## 🏛 High-Level Architecture
+
+```
+Frontend (React + TypeScript)
+        |
+        | REST API
+        ▼
+Backend (Spring Boot)
+        |
+        ▼
+Rate Limiting Core
+```
+
+---
+
+## 📁 Project Structure
+
+```text
+com.saima.rate_limiter
+├── config
+│   └── WebConfig
+│
+├── controller
+│   └── RateLimiterController
+│
+├── model
+│   ├── LeakyBucket
+│   ├── RateLimitAlgorithm
+│   ├── RateLimitConfig
+│   ├── RateLimitMetrics
+│   ├── RateLimitResult
+│   └── TokenBucket
+│
+├── service
+│   ├── algorithms
+│   │   ├── FixedWindowLimiter
+│   │   ├── LeakyBucketLimiter
+│   │   ├── SlidingWindowLogLimiter
+│   │   └── TokenBucketLimiter
+│   │
+│   ├── factory
+│   │   └── RateLimiterManager
+│   │
+│   └── RateLimiter
+│
+├── store
+│   ├── InMemoryStore
+│   ├── LeakyBucketStore
+│   ├── SlidingWindowStore
+│   └── TokenBucketStore
+│
+└── RateLimiterApplication
+```
+
+**Design highlights:**
+
+* Clear separation of **algorithms**, **storage**, and **orchestration**
+* Strategy + Factory patterns for easy extensibility
+* Each algorithm maintains its own state store
+
+---
+
+## 🛠 Tech Stack
+
+### Frontend
+
+* Next Js
+* JavaScript
+* Framer Motion
+* Tailwind CSS
+
+### Backend
+
+* Java 25
+* Spring Boot
+* RESTful APIs
+* Strategy & Factory design patterns
+
+---
+
+## ▶️ Run Locally
+
+### Clone Repository
+
+```bash
+git clone https://github.com/<your-username>/rate-limiter-visualizer.git
+cd rate-limiting-visualizer
+```
+
+---
+
+### Start Backend
+
+```bash
+cd rate-limiter
+./mvnw spring-boot:run
+```
+
+Backend URL:
+
+```
+http://localhost:8080
+```
+
+---
+
+### Start Frontend
+
+```bash
+cd rate-limiter-frontend/app
+npm install
+npm run dev
+```
+
+Frontend URL:
+
+```
+http://localhost:3000
+```
+
+---
+
+## 🤝 Contributions
+
+Contributions are welcome and appreciated!
+
+1. Fork the repository
+2. Create a new branch (`git checkout -b feature-name`)
+3. Commit your changes (`git commit -m "Implement feature"`)
+4. Push to your branch (`git push origin feature-name`)
+5. Open a Pull Request
