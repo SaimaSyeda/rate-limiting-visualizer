@@ -2,5 +2,6 @@ package com.saima.rate_limiter.model;
 
 public enum RateLimitAlgorithm {
     FIXED_WINDOW,
-    TOKEN_BUCKET
+    TOKEN_BUCKET,
+    SLIDING_WINDOW_LOG
 }
